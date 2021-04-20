@@ -11,8 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import texts from '../../texts';
 import meetupPeopleImage from '../../images/meetup_home.jpg';
+import { useTranslation } from 'react-i18next';
 //import { WeatherApi } from '../../services/api/api';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 //     .catch((error) => console.log(error));
 const Home = (): ReactElement => {
     const classes = useStyles();
-
+    const { t } = useTranslation();
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -90,7 +90,7 @@ const Home = (): ReactElement => {
                         />
                         <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
                         <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                            {texts.home.signin}
+                            {t('home.signin')}
                         </Button>
                         <Grid container>
                             <Grid item xs>
