@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import meetupPeopleImage from '../../images/meetup_home.jpg';
 import { useTranslation } from 'react-i18next';
 //import { WeatherApi } from '../../services/api/api';
+import { UserApi } from '../../services/api/api';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,6 +51,13 @@ const useStyles = makeStyles((theme) => ({
 // api.getForecast()
 //     .then((item) => console.log(item))
 //     .catch((error) => console.log(error));
+
+const api = new UserApi();
+
+api.login('Admin', 'Admin')
+    .then((item) => console.log(item))
+    .catch((error) => console.log(error));
+
 const Home = (): ReactElement => {
     const classes = useStyles();
     const { t } = useTranslation();

@@ -1,17 +1,25 @@
 const TOKEN_KEY = 'jwt';
 
 export const login = (): void => {
-  localStorage.setItem(TOKEN_KEY, 'TestLogin');
+    localStorage.setItem(TOKEN_KEY, 'TestLogin');
 };
 
 export const logout = (): void => {
-  localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(TOKEN_KEY);
 };
 
 export const isLogin = (): boolean => {
-  if (localStorage.getItem(TOKEN_KEY)) {
-    return true;
-  }
+    if (localStorage.getItem(TOKEN_KEY)) {
+        return true;
+    }
 
-  return false;
+    return false;
+};
+
+export const isEmptyObject = (obj: Record<string, unknown>): boolean => {
+    if (obj && Object.keys(obj).length === 0 && obj.constructor === Object) {
+        return true;
+    } else {
+        return false;
+    }
 };
