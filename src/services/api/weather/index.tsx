@@ -30,8 +30,8 @@ export class WeatherApi {
      */
     async getForecast(): Promise<Types.GetForecastResult> {
         // make the api call
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const response: ApiResponse<any> = await this.apisauce.get(
+
+        const response: ApiResponse<Types.GetForecastResult> = await this.apisauce.get(
             `/current.json?key=c30af8794534403697e55205211904&q=Argentina&aqi=no`,
         );
 
