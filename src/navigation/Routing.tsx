@@ -1,5 +1,6 @@
 import { BrowserRouter, Switch } from 'react-router-dom';
-import Login from '../containers/login';
+import Admin from '../containers/admin';
+import User from '../containers/user';
 import Home from '../containers/home';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
@@ -10,7 +11,8 @@ export const Routing = (): ReactElement => {
         <BrowserRouter>
             <Switch>
                 <PublicRoute Component={Home} path="/" />
-                <PrivateRoute Component={Login} path="/login" />
+                <PrivateRoute Component={Admin} path="/admin" />
+                <PrivateRoute Component={User} path="/user" />
             </Switch>
         </BrowserRouter>
     );

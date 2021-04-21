@@ -1,8 +1,8 @@
 {
   "home": {
-      "signin": "Ingresar",
-      "username": "Nombre de usuario",
-      "password": "Contraseña",
+      "signin": "Sign in",
+      "username": "Username",
+      "password": "Password",
       "errorPasswordPresence": "Debe completar la contraseña",
       "errorUsernamePresence": "Debe completar el nombre de usuario",
       "errorNotValidCredentials": "Las credenciales ingresadas no son validas"

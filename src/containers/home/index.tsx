@@ -1,20 +1,18 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import meetupPeopleImage from '../../images/meetup_home.jpg';
 import { useTranslation } from 'react-i18next';
-//import { WeatherApi } from '../../services/api/api';
-import { UserApi } from '../../services/api/api';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { login } from '../../utils';
+import logo from '../../images/logo.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
+        width: '80px',
+        height: '80px',
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
@@ -44,23 +44,38 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    error: {
+        color: theme.palette.error.dark,
+    },
+    logo: {
+        width: '80px',
+        height: '80px',
+    },
 }));
-
-// const api = new WeatherApi();
-// api.setup();
-// api.getForecast()
-//     .then((item) => console.log(item))
-//     .catch((error) => console.log(error));
-
-const api = new UserApi();
-
-api.login('Admin', 'Admin')
-    .then((item) => console.log(item))
-    .catch((error) => console.log(error));
 
 const Home = (): ReactElement => {
     const classes = useStyles();
     const { t } = useTranslation();
+    const [error, setError] = useState(false);
+
+    const formValidationSchema = Yup.object().shape({
+        username: Yup.string().trim().required(t('home.errorUsernamePresence')),
+        password: Yup.string().trim().required(t('home.errorPasswordPresence')),
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            username: '',
+            password: '',
+        },
+        validationSchema: formValidationSchema,
+        onSubmit: (values) => {
+            console.log(values);
+            setError(false);
+            login();
+        },
+    });
+
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -68,50 +83,66 @@ const Home = (): ReactElement => {
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
+                        <img src={logo} className={classes.logo} />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        {t('home.signin')}
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form data-test="FormLogin" className={classes.form} onSubmit={formik.handleSubmit}>
                         <TextField
+                            data-test="LoginInputUsername"
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
+                            id="username"
+                            label={t('home.username')}
+                            name="username"
+                            autoComplete="username"
                             autoFocus
+                            onChange={formik.handleChange}
+                            value={formik.values.username}
                         />
+                        {formik.errors.username && formik.touched.username ? (
+                            <div data-test="errorMessageUsername" className={classes.error}>
+                                {formik.errors.username}
+                            </div>
+                        ) : null}
                         <TextField
+                            data-test="LoginInputPassword"
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label={t('home.password')}
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={formik.handleChange}
+                            value={formik.values.password}
+                            error={formik.errors.password ? true : false}
                         />
-                        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                        {formik.errors.password && formik.touched.password ? (
+                            <div data-test="errorMessagePassword" className={classes.error}>
+                                {formik.errors.password}
+                            </div>
+                        ) : null}
+                        {error ? (
+                            <div data-test="errorMessage" className={classes.error}>
+                                {t('home.errorNotValidCredentials')}
+                            </div>
+                        ) : null}
+                        <Button
+                            data-test="SubmitLogin"
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
                             {t('home.signin')}
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
                     </form>
                 </div>
             </Grid>

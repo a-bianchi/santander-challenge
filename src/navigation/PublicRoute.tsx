@@ -18,7 +18,7 @@ export const PublicRoute: React.FC<Public> = ({ Component, restricted = false, p
         <Route
             path={path}
             exact
-            render={(props) => (isLogin() && restricted ? <Redirect to="/home" /> : <Component {...props} />)}
+            render={(props) => (isLogin() && restricted ? <Redirect to="/" /> : <Component {...props} />)}
         />
     );
 };

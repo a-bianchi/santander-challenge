@@ -1,4 +1,5 @@
 import * as Types from './user.types';
+import { User } from './user.types';
 
 export class UserApi {
     private users = [
@@ -51,7 +52,13 @@ export class UserApi {
                       isAxiosError: true,
                       toJSON: {},
                   },
-                  data: {},
+                  data: {
+                      id: '',
+                      username: '',
+                      password: '',
+                      role: 'User',
+                      age: '',
+                  },
                   status: 401,
               };
 
@@ -62,10 +69,12 @@ export class UserApi {
             };
         }
 
-        const convert = (raw: Record<string, unknown>) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const convert = (raw: any): User => {
             return {
                 id: raw?.id,
                 username: raw?.username,
+                password: '',
                 role: raw?.role,
                 age: raw?.age,
             };
