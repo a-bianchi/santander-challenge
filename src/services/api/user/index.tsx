@@ -9,6 +9,7 @@ export class UserApi {
             password: 'Admin',
             role: 'Admin',
             age: 21,
+            token: 'asdasd-djskh234jh2lkj4h2l3j4',
         },
         {
             id: '2',
@@ -16,6 +17,7 @@ export class UserApi {
             password: 'User',
             role: 'User',
             age: 21,
+            token: '456ftytr-asd234234zsfd9s8f9s87d',
         },
         {
             id: '3',
@@ -23,6 +25,7 @@ export class UserApi {
             password: 'User2',
             role: 'User',
             age: 17,
+            token: '123asdasd-eroiptupi46456u',
         },
     ];
 
@@ -77,6 +80,7 @@ export class UserApi {
                 password: '',
                 role: raw?.role,
                 age: raw?.age,
+                token: raw?.token,
             };
         };
 

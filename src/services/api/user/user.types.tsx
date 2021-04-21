@@ -6,6 +6,7 @@ export interface User {
     password: string;
     role: 'Admin' | 'User';
     age: number;
+    token: string;
 }
 
 export type GetUserResult = { kind: 'ok'; user: User } | GeneralApiProblem;

@@ -1,10 +1,10 @@
 const TOKEN_KEY = 'jwt';
 
-export const login = (): void => {
+export const setToken = (): void => {
     localStorage.setItem(TOKEN_KEY, 'TestLogin');
 };
 
-export const logout = (): void => {
+export const removeToken = (): void => {
     localStorage.removeItem(TOKEN_KEY);
 };
 

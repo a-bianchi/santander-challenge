@@ -9,16 +9,17 @@ type Public = {
             [x: string]: string | undefined;
         }>
     >;
-    path: string;
+    exact?: boolean;
+    path?: string;
     restricted?: boolean;
 };
 
-export const PublicRoute: React.FC<Public> = ({ Component, restricted = false, path }): ReactElement => {
+export const PublicRoute: React.FC<Public> = ({ Component, restricted = false, path, exact = true }): ReactElement => {
     return (
         <Route
+            exact={exact}
             path={path}
-            exact
-            render={(props) => (isLogin() && restricted ? <Redirect to="/" /> : <Component {...props} />)}
+            render={(props) => (isLogin() && restricted ? <Redirect to="/home" /> : <Component {...props} />)}
         />
     );
 };

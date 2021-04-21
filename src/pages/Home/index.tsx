@@ -11,7 +11,6 @@ import meetupPeopleImage from '../../images/meetup_home.jpg';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { login } from '../../utils';
 import logo from '../../images/logo.jpg';
 
 const useStyles = makeStyles((theme) => ({
@@ -72,7 +71,6 @@ const Home = (): ReactElement => {
         onSubmit: (values) => {
             console.log(values);
             setError(false);
-            login();
         },
     });
 

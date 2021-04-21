@@ -13,5 +13,7 @@ type Private = {
 };
 
 export const PrivateRoute: React.FC<Private> = ({ Component, path }): ReactElement => {
-    return <Route path={path} exact render={(props) => (isLogin() ? <Component {...props} /> : <Redirect to="/" />)} />;
+    return (
+        <Route exact path={path} render={(props) => (isLogin() ? <Component {...props} /> : <Redirect to="/home" />)} />
+    );
 };

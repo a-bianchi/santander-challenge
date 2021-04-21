@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const reactI18next = require('react-i18next');
 
 const hasChildren = (node) => node && (node.children || (node.props && node.props.children));
