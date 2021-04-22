@@ -20,10 +20,10 @@ const NotFound = (): ReactElement => {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-                <Typography component="h1" variant="h1">
+                <Typography data-test="Text404" component="h1" variant="h1">
                     404
                 </Typography>
-                <Typography component="h1" variant="h1">
+                <Typography data-test="TextError" component="h1" variant="h1">
                     Error
                 </Typography>
             </div>

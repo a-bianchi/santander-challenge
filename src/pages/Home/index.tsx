@@ -14,6 +14,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import logo from '../../images/logo.jpg';
 import { useStores } from '../../models';
+import { useHistory } from 'react-router-dom';
+import { setToken } from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,6 +62,7 @@ const Home = observer(
         const { t } = useTranslation();
         const [error, setError] = useState(false);
         const { userStore } = useStores();
+        const history = useHistory();
 
         const formValidationSchema = Yup.object().shape({
             username: Yup.string().trim().required(t('home.errorUsernamePresence')),
@@ -73,10 +76,14 @@ const Home = observer(
             },
             validationSchema: formValidationSchema,
             onSubmit: async (values) => {
-                console.log(values);
                 setError(false);
                 await userStore.login(values.username, values.password);
-                console.log(userStore.role);
+                setToken();
+                if (userStore.role === 'Admin') {
+                    history.push('/admin');
+                } else {
+                    history.push('/user');
+                }
             },
         });
 
