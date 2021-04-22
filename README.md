@@ -1,3 +1,4 @@
+
 <h1 align="center">Welcome to my Santander Technology Challenge 👋</h1>
 
 ## Packages
@@ -37,6 +38,17 @@
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 - [Husky](https://github.com/typicode/husky)
+
+## Test users to enter
+```sh
+username: Admin
+password: Admin
+role: Admin
+
+username: User
+password: User
+role: User
+```
 
 ## Install
 
@@ -80,4 +92,5 @@ yarn coverage
 👤 **Alejo Bianchi <alejobianchi@gmail.com>**
 
 - Github: [@a-bianchi](https://github.com/a-bianchi)
+
 
