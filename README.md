@@ -41,13 +41,13 @@
 
 ## Test users to enter
 ```sh
+role: Admin
 username: Admin
 password: Admin
-role: Admin
 
+role: User
 username: User
 password: User
-role: User
 ```
 
 ## Install

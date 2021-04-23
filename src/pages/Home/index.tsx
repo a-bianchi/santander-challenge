@@ -9,13 +9,13 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import meetupPeopleImage from '../../images/meetup_home.jpg';
+import logo from '../../images/logo.jpg';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import logo from '../../images/logo.jpg';
 import { useStores } from '../../models';
 import { useHistory } from 'react-router-dom';
-import { setToken } from '../../utils';
+import { save } from '../../utils/storage';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -78,7 +78,7 @@ const Home = observer(
             onSubmit: async (values) => {
                 setError(false);
                 await userStore.login(values.username, values.password);
-                setToken();
+                save('root', userStore);
                 if (userStore.role === 'Admin') {
                     history.push('/admin');
                 } else {

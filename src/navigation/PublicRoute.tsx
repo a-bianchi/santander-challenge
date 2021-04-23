@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { ReactElement } from 'react';
 import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
-import { isLogin } from '../utils';
+import { isLogin } from '../utils/storage';
 
 type Public = {
     Component: React.FC<

@@ -14,7 +14,7 @@ const App = (): ReactElement => {
         (async () => {
             setupRootStore().then(setRootStore);
         })();
-    });
+    }, []);
 
     if (!rootStore) return <div>Load..</div>;
 

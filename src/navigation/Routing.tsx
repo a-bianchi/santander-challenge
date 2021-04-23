@@ -1,5 +1,4 @@
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
-
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { ReactElement } from 'react';
