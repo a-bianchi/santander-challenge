@@ -1,4 +1,6 @@
-import { UserModel } from '../user-store';
+import { UserModel } from '../user-store/user.store';
+import { MeetupsModel } from '../meetups-store/meetups.store';
+import { MeetupModel } from '../meetup-store/meetup.store';
 
 import { Instance, SnapshotOut, types } from 'mobx-state-tree';
 
@@ -8,6 +10,8 @@ import { Instance, SnapshotOut, types } from 'mobx-state-tree';
 // prettier-ignore
 export const RootStoreModel = types.model("RootStore").props({
   userStore: types.optional(UserModel, {}),
+  meetupStore: types.optional(MeetupModel, {}),
+  meetupsStore: types.optional(MeetupsModel, {}),
 })
 
 /**

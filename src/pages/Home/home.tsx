@@ -16,6 +16,23 @@ import * as Yup from 'yup';
 import { useStores } from '../../models';
 import { useHistory } from 'react-router-dom';
 import { save } from '../../utils/storage';
+import { Box } from '@material-ui/core';
+
+const Help = (): JSX.Element => {
+    return (
+        <>
+            <Typography variant="body2" color="textSecondary" align="center">
+                {'Usuarios de Prueba'}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" align="center">
+                {'Role: Admin - Username: Admin - Password: Admin'}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" align="center">
+                {'Role: User - Username: User - Password: User'}
+            </Typography>
+        </>
+    );
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Home = observer(
+export const Home = observer(
     (): ReactElement => {
         const classes = useStyles();
         const { t } = useTranslation();
@@ -113,6 +130,7 @@ const Home = observer(
                                 autoFocus
                                 onChange={formik.handleChange}
                                 value={formik.values.username}
+                                error={formik.errors.username ? true : false}
                             />
                             {formik.errors.username && formik.touched.username ? (
                                 <div data-test="errorMessageUsername" className={classes.error}>
@@ -156,10 +174,11 @@ const Home = observer(
                             </Button>
                         </form>
                     </div>
+                    <Box mt={8}>
+                        <Help />
+                    </Box>
                 </Grid>
             </Grid>
         );
     },
 );
-
-export default Home;

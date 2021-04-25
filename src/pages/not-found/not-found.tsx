@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const NotFound = (): ReactElement => {
+export const NotFound = (): ReactElement => {
     const classes = useStyles();
 
     return (
@@ -30,5 +30,3 @@ const NotFound = (): ReactElement => {
         </Container>
     );
 };
-
-export default NotFound;

@@ -1,15 +1,15 @@
 import { GeneralApiProblem } from '../api.problem';
-import { User } from '../user/user.types';
 
 export interface Meetup {
-    id: string;
+    id?: string;
     userId: string;
-    name: string;
-    date: Date;
+    usersIdAttend?: string;
+    title: string;
+    date: string;
     temperature: number;
-    beersQuantity: number;
-    UsersAttend: User[];
-    status: boolean;
+    beers: number;
+    status: string;
 }
 
-export type GetUserResult = { kind: 'ok'; meetups: Meetup[] | {} } | GeneralApiProblem;
+export type GetMeetupsResult = { kind: 'ok'; meetups: Meetup[] } | GeneralApiProblem;
+export type GetMeetupResult = { kind: 'ok'; meetup: Meetup } | GeneralApiProblem;

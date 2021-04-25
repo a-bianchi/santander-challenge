@@ -6,5 +6,53 @@
       "errorPasswordPresence": "Debe completar la contraseña",
       "errorUsernamePresence": "Debe completar el nombre de usuario",
       "errorNotValidCredentials": "Las credenciales ingresadas no son validas"
+  },
+  "admin":{
+    "tableTitle": "Listado de Meetups",
+    "cancel": "Cancelar",
+    "invite": "Invite"
+  },
+  "user":{
+    "tableTitle": "Listado de Meetups",
+    "checkIn": "Check-In",
+    "goto": "Asistire"
+  },
+  "notification":{
+    "tableTitle": "Listado de Notificaciones",
+    "checkIn": "Check-In",
+    "goto": "Asistire"
+  }, 
+  "navbar": {
+    "home": "home",
+    "title": "Meetups Santander",
+    "logout": "Logout",
+    "notification": "Notificaciones"
+  },
+  "dataTable": {
+    "title": "Titulo",
+    "date": "Fecha",
+    "temperature": "Temperatura",
+    "create": "Crear",
+    "people": "Participantes",
+    "beers": "Packs",
+    "status": "Estado",
+    "confirmed": "Confirmado",
+    "canceled": "Cancelado",
+    "checkin":"Checkin",
+    "pending": "Pendiente",
+    "message": "Mensaje"
+  },
+  "createForm": {
+    "title": "Titulo",
+    "date": "Fecha",
+    "temperature": "Temperatura",
+    "beers": "Cervezas",
+    "people": "Personas",
+    "submit": "Crear",
+    "errorNamePresence": "El nombre es requerido!",
+    "errorDatePresence": "La fecha es requerida!",
+    "errorTemperaturePresence": "La temperatura es requerida!",
+    "errorBeersQuantityPresence": "La cantidad de cervezas es requerida!",
+    "errorPeoplePresence": "La cantidad de personas es requerida!"
   }
 }

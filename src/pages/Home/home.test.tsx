@@ -1,6 +1,6 @@
 /* global describe expect it */
 import { shallow } from 'enzyme';
-import Home from './index';
+import { Home } from './home';
 
 describe('Home', () => {
     it('should be defined', () => {

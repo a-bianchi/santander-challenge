@@ -1,6 +1,6 @@
 import { Instance, types, flow } from 'mobx-state-tree';
 import { GetUserResult } from '../../services/api/user/user.types';
-import { UserApi } from '../../services/api/user';
+import { UserApi } from '../../services/api/api';
 
 export const UserModel = types
     .model('User')
@@ -24,7 +24,7 @@ export const UserModel = types
                     self.role = result.user.role;
                     self.token = result.user.token;
                     self.age = result.user.age;
-                    return result;
+                    return result.user;
                 }
             } catch (error) {
                 console.log('Error: ', error);

@@ -1,11 +1,10 @@
 import { GeneralApiProblem } from '../api.problem';
 
-export interface User {
-    id: string;
-    username: string;
-    password: string;
-    role: 'Admin' | 'User';
-    age: number;
+export interface notification {
+    id: number;
+    userId: string;
+    message: string;
+    date: string;
 }
 
-export type GetUserResult = { kind: 'ok'; user: User } | GeneralApiProblem;
+export type GetNotificationResult = { kind: 'ok'; notifications: notification[] } | GeneralApiProblem;

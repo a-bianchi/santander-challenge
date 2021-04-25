@@ -12,7 +12,7 @@ export const load = (key: string): any | null => {
     return almostThere ? JSON.parse(almostThere) : null;
 };
 
-export const remove = (key: string): void => {
+export const remove = (key = keyRoot): void => {
     localStorage.removeItem(key);
 };
 

@@ -1,6 +1,6 @@
 /* global describe expect it */
 import { shallow } from 'enzyme';
-import NotFound from './index';
+import { NotFound } from './not-found';
 
 describe('Not found page', () => {
     it('should be defined', () => {

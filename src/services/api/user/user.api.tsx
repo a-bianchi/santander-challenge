@@ -9,6 +9,7 @@ export class UserApi {
             password: 'Admin',
             role: 'Admin',
             age: 21,
+            email: 'admin@admin.com',
             token: 'asdasd-djskh234jh2lkj4h2l3j4',
         },
         {
@@ -17,6 +18,7 @@ export class UserApi {
             password: 'User',
             role: 'User',
             age: 21,
+            email: 'user@user.com',
             token: '456ftytr-asd234234zsfd9s8f9s87d',
         },
         {
@@ -25,6 +27,7 @@ export class UserApi {
             password: 'User2',
             role: 'User',
             age: 17,
+            email: 'user2@user2.com',
             token: '123asdasd-eroiptupi46456u',
         },
     ];
@@ -87,6 +90,24 @@ export class UserApi {
         // transform the data into the format we are expecting
         try {
             return { kind: 'ok', user: convert(response.data) };
+        } catch {
+            return { kind: 'bad-data' };
+        }
+    }
+
+    async inviteUser(email: string): Promise<Types.InviteUserResult> {
+        // make the api call
+
+        const users = this.users.filter((user) => user.email === email);
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let invite = { status: 'error', message: 'Fail sent to the user!' };
+        if (users) {
+            invite = { status: 'ok', message: 'Invitation sent to the user!' };
+        }
+
+        try {
+            return { kind: 'ok', invite: invite };
         } catch {
             return { kind: 'bad-data' };
         }
