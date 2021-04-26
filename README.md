@@ -75,12 +75,12 @@ yarn test
 ```
 
 ## Run e2e tests
-
+- Note: to run these tests the localhost server must be running, make sure to run 'yarn start' before.
 ```sh
 yarn e2e
 ```
 
-## Run coverage
+## Run Coverage
 
 ```sh
 yarn coverage

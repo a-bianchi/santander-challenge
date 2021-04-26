@@ -75,8 +75,8 @@ export const DataTable = ({ title, create, actions, data = [] }: Props): JSX.Ele
                         </TableRow>
                     </TableHead>
                     <TableBody data-test="Body">
-                        {data.map((row, index) => (
-                            <TableRow key={`${row.title}-${index}`}>
+                        {data.map((row, index1) => (
+                            <TableRow key={`${row.title}-${index1}`} data-test={`${row.title}-${index1}`}>
                                 <TableCell component="th" scope="row" align="center">
                                     {row.title}
                                 </TableCell>
@@ -88,11 +88,11 @@ export const DataTable = ({ title, create, actions, data = [] }: Props): JSX.Ele
                                 <TableCell align="right">
                                     {' '}
                                     {actions
-                                        ? actions.map((action, index) => {
+                                        ? actions.map((action, index2) => {
                                               return (
                                                   <Button
-                                                      key={`action-${index}`}
-                                                      data-test={`action-${index}`}
+                                                      key={`action-${index1}-${index2}`}
+                                                      data-test={`action-${index1}-${index2}`}
                                                       variant="contained"
                                                       onClick={action.handler}
                                                       className={classes.handleButton}
