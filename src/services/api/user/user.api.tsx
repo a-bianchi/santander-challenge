@@ -62,7 +62,7 @@ export class UserApi {
                       id: '',
                       username: '',
                       password: '',
-                      role: 'User',
+                      role: '',
                       age: '',
                   },
                   status: 401,

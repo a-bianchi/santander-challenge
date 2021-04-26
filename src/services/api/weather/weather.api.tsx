@@ -19,8 +19,9 @@ export class WeatherApi {
             baseURL: this.config.url,
             timeout: this.config.timeout,
             headers: {
-                Accept: 'application/json',
-                'Access-Control-Allow-Origin': '*',
+                'x-rapidapi-key': '0dca3afad9msh97073b645779af1p17e5aejsn099c61cdd2d3',
+                'x-rapidapi-host': 'weatherbit-v1-mashape.p.rapidapi.com',
+                useQueryString: true,
             },
         });
     }
@@ -31,11 +32,14 @@ export class WeatherApi {
     async getForecast(): Promise<Types.GetForecastResult> {
         // make the api call
 
-        const response: ApiResponse<any> = await this.apisauce.get(
-            `/current.json?key=c30af8794534403697e55205211904&q=Argentina&aqi=no`,
-        );
+        const response: ApiResponse<any> = await this.apisauce.post(`/forecast/daily`, {
+            lat: '-34.603722',
+            lon: '-58.381592',
+            units: 'metric',
+            lang: 'es',
+        });
 
-        // the typical ways to die when calling an api
+        //the typical ways to die when calling an api
         if (!response.ok) {
             const problem = getGeneralApiProblem(response);
             if (problem) return problem;

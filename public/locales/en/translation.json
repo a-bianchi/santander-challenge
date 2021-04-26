@@ -3,56 +3,58 @@
       "signin": "Sign in",
       "username": "Username",
       "password": "Password",
-      "errorPasswordPresence": "Debe completar la contraseña",
-      "errorUsernamePresence": "Debe completar el nombre de usuario",
-      "errorNotValidCredentials": "Las credenciales ingresadas no son validas"
+      "errorPasswordPresence": "You must complete the password",
+      "errorUsernamePresence": "You must fill in the username",
+      "errorNotValidCredentials": "The credentials entered are not valid"
   },
-  "admin":{
-    "tableTitle": "Listado de Meetups",
-    "cancel": "Cancelar",
+  "admin": {
+    "tableTitle": "List of Meetups",
+    "cancel": "Cancel",
     "invite": "Invite"
   },
-  "user":{
-    "tableTitle": "Listado de Meetups",
+  "user": {
+    "tableTitle": "List of Meetups",
     "checkIn": "Check-In",
-    "goto": "Asistire"
+    "goto": "I will attend"
   },
-  "notification":{
-    "tableTitle": "Listado de Notificaciones",
+  "notification": {
+    "tableTitle": "List of Notifications",
     "checkIn": "Check-In",
-    "goto": "Asistire"
-  }, 
+    "goto": "I will attend"
+  },
   "navbar": {
     "home": "home",
     "title": "Meetups Santander",
     "logout": "Logout",
-    "notification": "Notificaciones"
+    "notification": "Notifications"
   },
   "dataTable": {
-    "title": "Titulo",
-    "date": "Fecha",
-    "temperature": "Temperatura",
-    "create": "Crear",
-    "people": "Participantes",
+    "title": "Title",
+    "date": "Date",
+    "temperature": "Temperature",
+    "create": "Create",
+    "people": "Participants",
     "beers": "Packs",
-    "status": "Estado",
-    "confirmed": "Confirmado",
-    "canceled": "Cancelado",
-    "checkin":"Checkin",
-    "pending": "Pendiente",
-    "message": "Mensaje"
+    "status": "Status",
+    "confirmed": "Confirmed",
+    "canceled": "Canceled",
+    "checkin": "Checkin",
+    "pending": "Pending",
+    "message": "Message"
   },
   "createForm": {
-    "title": "Titulo",
-    "date": "Fecha",
-    "temperature": "Temperatura",
-    "beers": "Cervezas",
-    "people": "Personas",
-    "submit": "Crear",
-    "errorNamePresence": "El nombre es requerido!",
-    "errorDatePresence": "La fecha es requerida!",
-    "errorTemperaturePresence": "La temperatura es requerida!",
-    "errorBeersQuantityPresence": "La cantidad de cervezas es requerida!",
-    "errorPeoplePresence": "La cantidad de personas es requerida!"
+    "title": "Title",
+    "date": "Date",
+    "temperature": "Temperature",
+    "beers": "Beer Six Packs",
+    "people": "People",
+    "submit": "Create",
+    "errorPeopleMaxZero": "The number of people must be greater than 0!",
+    "errorBeersMaxZero": "The number of beers six pack must be greater than 0!",
+    "errorTitlePresence": "The title is required!",
+    "errorDatePresence": "The date is required!",
+    "errorTemperaturePresence": "The temperature is required!",
+    "errorBeersQuantityPresence": "The number of beers is required!",
+    "errorPeoplePresence": "The number of people is required!"
   }
-}
+} 

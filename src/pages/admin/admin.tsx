@@ -7,6 +7,9 @@ import { Container, createStyles, makeStyles, Modal, Theme } from '@material-ui/
 import { useTranslation } from 'react-i18next';
 import { MeetupApi } from '../../services/api/api';
 import { useStores } from '../../models';
+import { mockWeather } from '../../services/api/weather/mockResponse';
+import { convertWeather } from '../../utils';
+import { Options } from '../../types';
 
 const rand = () => {
     return Math.round(Math.random() * 20) - 10;
@@ -64,10 +67,12 @@ export const Admin = observer(
         const history = useHistory();
         const { t } = useTranslation();
         const meetup = new MeetupApi();
+        //const weather = new WeatherApi();
         const { userStore } = useStores();
         const [open, setOpen] = useState(false);
         const [meetups, setMeetups] = useState(mockData);
         const [modalStyle] = useState(getModalStyle);
+        const [weather, setWeather] = useState<Options[]>([]);
 
         const handleOpen = () => {
             setOpen(true);
@@ -118,6 +123,8 @@ export const Admin = observer(
                 .catch((error) => {
                     console.log(`Error: getUserMeetup ${error}`);
                 });
+            const responseWeather = convertWeather(mockWeather.data);
+            if (responseWeather) setWeather(responseWeather);
         }, []);
 
         return (
@@ -138,7 +145,7 @@ export const Admin = observer(
                         aria-describedby="simple-modal-description"
                     >
                         <div style={modalStyle} className={classes.paper}>
-                            <CreateForm create={saveMeetups} />
+                            <CreateForm create={saveMeetups} options={weather} />
                         </div>
                     </Modal>
                 </Container>

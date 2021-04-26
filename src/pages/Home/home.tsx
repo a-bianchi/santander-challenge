@@ -95,12 +95,16 @@ export const Home = observer(
             onSubmit: async (values) => {
                 setError(false);
                 await userStore.login(values.username, values.password);
-                save('root', userStore);
-                if (userStore.role === 'Admin') {
-                    history.push('/admin');
-                } else {
-                    history.push('/user');
+                if (userStore.role !== '') {
+                    save('root', userStore);
+                    if (userStore.role === 'Admin') {
+                        history.push('/admin');
+                    }
+                    if (userStore.role === 'User') {
+                        history.push('/user');
+                    }
                 }
+                setError(true);
             },
         });
 
@@ -121,7 +125,6 @@ export const Home = observer(
                                 data-test="LoginInputUsername"
                                 variant="outlined"
                                 margin="normal"
-                                required
                                 fullWidth
                                 id="username"
                                 label={t('home.username')}
@@ -141,7 +144,6 @@ export const Home = observer(
                                 data-test="LoginInputPassword"
                                 variant="outlined"
                                 margin="normal"
-                                required
                                 fullWidth
                                 name="password"
                                 label={t('home.password')}

@@ -38,23 +38,20 @@ export const User = observer(
         const meetup = new MeetupApi();
         const { userStore } = useStores();
 
+        const checkInMeetups = async (meetupBody) => {
+            console.log(meetupBody);
+            await meetup.update(meetupBody);
+        };
+
         const actionCheckIn = [
             {
                 name: t('user.checkIn'),
-                handler: () => {
+                handler: async (meetupBody) => {
+                    await checkInMeetups(meetupBody);
                     console.log('check in');
                 },
             },
         ];
-
-        // const actionGoto = [
-        //     {
-        //         name: t('user.Goto'),
-        //         handler: () => {
-        //             console.log('go to');
-        //         },
-        //     },
-        // ];
 
         useEffect(() => {
             if (isAdmin()) {

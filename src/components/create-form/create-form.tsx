@@ -4,6 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { TextField } from '@material-ui/core';
+import { ChangeEvent } from 'react';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { Options } from '../../types';
+import { calculateSixPackBeersQuantity } from '../../utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -19,21 +25,40 @@ const useStyles = makeStyles((theme: Theme) => ({
     error: {
         color: theme.palette.error.dark,
     },
+    formControl: {
+        marginTop: theme.spacing(1),
+        minWidth: 333,
+    },
 }));
 
 interface Props {
     create: any;
+    options: Options[];
 }
 
-export const CreateForm = ({ create }: Props): JSX.Element => {
+const convertDataForm = (values) => {
+    return {
+        title: values.title,
+        date: values.date.split(',')[0],
+        temperature: values.date.split(',')[1],
+        people: values.people,
+        beers: values.beers,
+    };
+};
+
+export const CreateForm = ({ create, options }: Props): JSX.Element => {
     const classes = useStyles();
     const { t } = useTranslation();
 
     const formValidationSchema = Yup.object().shape({
-        title: Yup.string().required(t('createForm.errorNamePresence')),
+        title: Yup.string().required(t('createForm.errorTitlePresence')),
         date: Yup.string().required(t('createForm.errorDatePresence')),
-        beers: Yup.number().required(t('createForm.errorBeersQuantityPresence')),
-        people: Yup.number().required(t('createForm.errorPeoplePresence')),
+        beers: Yup.number()
+            .test('len', t('createForm.errorBeersMaxZero'), (val) => (val ? val > 0 : false))
+            .required(t('createForm.errorBeersQuantityPresence')),
+        people: Yup.number()
+            .test('len', t('createForm.errorPeopleMaxZero'), (val) => (val ? val > 0 : false))
+            .required(t('createForm.errorPeoplePresence')),
     });
 
     const formik = useFormik({
@@ -46,10 +71,23 @@ export const CreateForm = ({ create }: Props): JSX.Element => {
         },
         validationSchema: formValidationSchema,
         onSubmit: (values) => {
-            console.log(JSON.stringify(values));
-            create({ ...values, status: 'pending' });
+            const meet = convertDataForm(values);
+            create({ ...meet, status: 'pending' });
         },
     });
+
+    const onChangeDate = (e: ChangeEvent<any>) => {
+        console.log(formik.errors.title);
+        const datePick = e.target.value.split(',');
+        formik.values.temperature = datePick[1];
+        formik.handleChange(e);
+    };
+
+    const onChangePeople = (e: ChangeEvent<any>) => {
+        const people = e.target.value;
+        formik.values.beers = calculateSixPackBeersQuantity(people, formik.values.temperature);
+        formik.handleChange(e);
+    };
 
     return (
         <div className={classes.root}>
@@ -58,7 +96,6 @@ export const CreateForm = ({ create }: Props): JSX.Element => {
                     data-test="inputCreateName"
                     variant="outlined"
                     margin="normal"
-                    required
                     fullWidth
                     id="title"
                     label={t('createForm.title')}
@@ -73,19 +110,31 @@ export const CreateForm = ({ create }: Props): JSX.Element => {
                         {formik.errors.title}
                     </div>
                 ) : null}
-                <TextField
-                    data-test="inputCreateDate"
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="date"
-                    type="date"
-                    id="date"
-                    onChange={formik.handleChange}
-                    value={formik.values.date}
-                    error={formik.errors.date ? true : false}
-                />
+                <FormControl variant="outlined" className={classes.formControl}>
+                    <InputLabel htmlFor="outlined-date-native-simple">{t(`createForm.date`)}</InputLabel>
+                    <Select
+                        native
+                        data-test="selectCreateDate"
+                        fullWidth
+                        value={formik.values.date}
+                        onChange={onChangeDate}
+                        label={t(`createForm.date`)}
+                        inputProps={{
+                            name: 'date',
+                            id: 'date',
+                        }}
+                        error={formik.errors.date ? true : false}
+                    >
+                        <option aria-label="None" value="" />
+                        {options?.map((option, index) => {
+                            return (
+                                <option key={`${option.name}-${index}`} value={[option.name, option.value.toString()]}>
+                                    {`${option.name} - ${option.value}°C`}
+                                </option>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
                 {formik.errors.date && formik.touched.date ? (
                     <div data-test="errorMessageCreateDate" className={classes.error}>
                         {formik.errors.date}
@@ -108,13 +157,12 @@ export const CreateForm = ({ create }: Props): JSX.Element => {
                     data-test="inputCreatePeople"
                     variant="outlined"
                     margin="normal"
-                    required
                     fullWidth
                     name="people"
                     label={t('createForm.people')}
                     type="number"
                     id="people"
-                    onChange={formik.handleChange}
+                    onChange={onChangePeople}
                     value={formik.values.people}
                     error={formik.errors.people ? true : false}
                 />
