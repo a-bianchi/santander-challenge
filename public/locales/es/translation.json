@@ -1,58 +1,70 @@
+Tipos de traducción
+Traducción de texto
+Texto original
+correct response
+1742 / 5000
+Resultados de traducción
 {
-  "home": {
-      "signin": "Sign in",
-      "username": "Username",
-      "password": "Password",
+  "casa": {
+      "signin": "Iniciar sesión",
+      "username": "Nombre de usuario",
+      "contraseña": "Contraseña",
       "errorPasswordPresence": "Debe completar la contraseña",
       "errorUsernamePresence": "Debe completar el nombre de usuario",
-      "errorNotValidCredentials": "Las credenciales ingresadas no son validas"
+      "errorNotValidCredentials": "Las credenciales ingresadas no son válidas"
   },
-  "admin":{
-    "tableTitle": "Listado de Meetups",
-    "cancel": "Cancelar",
-    "invite": "Invite"
+  "admin": {
+    "tableTitle": "Lista de reuniones",
+    "cancelar": "Cancelar",
+    "invite": "Invitar"
   },
-  "user":{
-    "tableTitle": "Listado de Meetups",
+  "usuario": {
+    "tableTitle": "Lista de reuniones",
     "checkIn": "Check-In",
-    "goto": "Asistire"
+    "goto": "Asistiré"
   },
-  "notification":{
-    "tableTitle": "Listado de Notificaciones",
+  "notificación": {
+    "tableTitle": "Lista de notificaciones",
     "checkIn": "Check-In",
-    "goto": "Asistire"
-  }, 
+    "goto": "Asistiré"
+  },
   "navbar": {
-    "home": "home",
+    "hogar Hogar",
     "title": "Meetups Santander",
-    "logout": "Logout",
-    "notification": "Notificaciones"
+    "logout": "Cerrar sesión",
+    "notificación": "Notificaciones"
   },
-  "dataTable": {
-    "title": "Titulo",
-    "date": "Fecha",
-    "temperature": "Temperatura",
-    "create": "Crear",
-    "people": "Participantes",
-    "beers": "Packs",
+  "tabla de datos": {
+    "title": "Título",
+    "fecha": "Fecha",
+    "temperatura": "Temperatura",
+    "crear": "Crear",
+    "personas": "Participantes",
+    "cervezas": "Packs",
     "status": "Estado",
-    "confirmed": "Confirmado",
-    "canceled": "Cancelado",
-    "checkin":"Checkin",
-    "pending": "Pendiente",
+    "confirmado": "Confirmado",
+    "cancelado": "Cancelado",
+    "checkin": "Checkin",
+    "pendiente": "Pendiente",
     "message": "Mensaje"
   },
   "createForm": {
-    "title": "Titulo",
-    "date": "Fecha",
-    "temperature": "Temperatura",
-    "beers": "Cervezas",
-    "people": "Personas",
-    "submit": "Crear",
-    "errorTitlePresence": "El titulo es requerido!",
-    "errorDatePresence": "La fecha es requerida!",
-    "errorTemperaturePresence": "La temperatura es requerida!",
-    "errorBeersQuantityPresence": "La cantidad de cervezas es requerida!",
-    "errorPeoplePresence": "La cantidad de personas es requerida!"
+    "title": "Título",
+    "fecha": "Fecha",
+    "temperatura": "Temperatura",
+    "beers": "Beer Six Packs",
+    "gente gente",
+    "enviar": "Crear",
+    "errorPeopleMaxZero": "¡El número de personas debe ser mayor que 0!",
+    "errorBeersMaxZero": "¡El número de cervezas six pack debe ser mayor que 0!",
+    "errorTitlePresence": "¡El título es obligatorio!",
+    "errorDatePresence": "¡La fecha es obligatoria!",
+    "errorTemperaturePresence": "¡La temperatura es necesaria!",
+    "errorBeersQuantityPresence": "¡Se requiere el número de cervezas!",
+    "errorPeoplePresence": "¡Se requiere el número de personas!"
   }
-}
+} 
+Más información sobre este texto de origen
+Para obtener más información sobre la traducción, se necesita el texto de origen
+Enviar comentarios
+Paneles laterales

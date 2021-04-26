@@ -111,29 +111,31 @@ export const Admin = observer(
                 history.push('/user');
             }
             const userId = userStore.id || '1';
-            meetup
-                .getUserMeetup(userId)
-                .then((data) => {
+            const getMeetup = async (): Promise<void> => {
+                try {
+                    const data = await meetup.getUserMeetup(userId);
                     if (data && data.kind === 'ok') {
                         const arrayMeetups = data.meetups.map((meet) => convert(meet));
                         setMeetups(arrayMeetups);
                     }
-                })
-                .catch((error) => {
+                } catch (error) {
                     console.log(`Error: getUserMeetup ${error}`);
-                });
-            weatherApi.setup();
-            weatherApi
-                .getForecast()
-                .then((data) => {
+                }
+            };
+            const getForecastData = async (): Promise<void> => {
+                try {
+                    await weatherApi.setup();
+                    const data = await weatherApi.getForecast();
                     if (data && data.kind === 'ok') {
                         const responseWeather = convertWeather(data.weather);
                         if (responseWeather) setWeather(responseWeather);
                     }
-                })
-                .catch((error) => {
+                } catch (error) {
                     console.log(`Error: getForecast ${error}`);
-                });
+                }
+            };
+            getMeetup();
+            getForecastData();
         }, []);
 
         return (

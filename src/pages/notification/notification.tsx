@@ -22,16 +22,17 @@ export const Notification = observer(
 
         useEffect(() => {
             const userId = userStore.id || '2';
-            notification
-                .getUserNotifications(userId)
-                .then((data) => {
+            const notificationApi = async (): Promise<void> => {
+                try {
+                    const data = await notification.getUserNotifications(userId);
                     if (data && data.kind === 'ok') {
                         setNotifications(data.notifications);
                     }
-                })
-                .catch((error) => {
+                } catch (error) {
                     console.log(`Error: getNotification ${error}`);
-                });
+                }
+            };
+            notificationApi();
         }, []);
 
         return (
