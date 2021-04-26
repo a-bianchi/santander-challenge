@@ -78,7 +78,6 @@ export const CreateForm = ({ create, options }: Props): JSX.Element => {
     });
 
     const onChangeDate = (e: ChangeEvent<any>) => {
-        console.log(formik.errors.title);
         const datePick = e.target.value.split(',');
         formik.values.temperature = datePick[1];
         formik.handleChange(e);

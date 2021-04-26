@@ -5,9 +5,8 @@ import { isAdmin } from '../../utils/storage';
 import { NavBar, DataTable, CreateForm, DataTableType } from '../../components';
 import { Container, createStyles, makeStyles, Modal, Theme } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { MeetupApi } from '../../services/api/api';
+import { MeetupApi, WeatherApi } from '../../services/api/api';
 import { useStores } from '../../models';
-import { mockWeather } from '../../services/api/weather/mockResponse';
 import { convertWeather } from '../../utils';
 import { Options } from '../../types';
 
@@ -66,8 +65,8 @@ export const Admin = observer(
         const classes = useStyles();
         const history = useHistory();
         const { t } = useTranslation();
+        const weatherApi = new WeatherApi();
         const meetup = new MeetupApi();
-        //const weather = new WeatherApi();
         const { userStore } = useStores();
         const [open, setOpen] = useState(false);
         const [meetups, setMeetups] = useState(mockData);
@@ -123,8 +122,18 @@ export const Admin = observer(
                 .catch((error) => {
                     console.log(`Error: getUserMeetup ${error}`);
                 });
-            const responseWeather = convertWeather(mockWeather.data);
-            if (responseWeather) setWeather(responseWeather);
+            weatherApi.setup();
+            weatherApi
+                .getForecast()
+                .then((data) => {
+                    if (data && data.kind === 'ok') {
+                        const responseWeather = convertWeather(data.weather);
+                        if (responseWeather) setWeather(responseWeather);
+                    }
+                })
+                .catch((error) => {
+                    console.log(`Error: getForecast ${error}`);
+                });
         }, []);
 
         return (

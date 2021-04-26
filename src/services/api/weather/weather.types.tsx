@@ -47,4 +47,4 @@ export interface Weather {
     description: string;
 }
 
-export type GetForecastResult = { kind: 'ok'; weather: Forecast } | GeneralApiProblem;
+export type GetForecastResult = { kind: 'ok'; weather: Forecast[] } | GeneralApiProblem;
