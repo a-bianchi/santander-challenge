@@ -1,6 +1,11 @@
 
 <h1 align="center">Welcome to my Santander Technology Challenge 👋</h1>
 
+# Before starting
+- No need to rename file '.env.example' to '.env'.
+- To run the e2e tests, the localhost server must be running, make sure to run 'yarn start' before and install the Cypress package. 
+- The 'check-in' and 'canceled' buttons simulate an api call, only a legend is seen in the console. 
+
 ## Packages
 
 ### Core
@@ -75,7 +80,6 @@ yarn test
 ```
 
 ## Run e2e tests
-- Note: to run these tests the localhost server must be running, make sure to run 'yarn start' before.
 ```sh
 yarn e2e
 ```
